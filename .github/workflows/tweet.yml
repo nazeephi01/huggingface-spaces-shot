@@ -8,10 +8,6 @@ jobs:
     - uses: actions/checkout@v3
     - run : ls -l
     - uses: snow-actions/tweet@v1.4.0
-      with:
-        status: |
-          Released ${{ github.event.release.name }}
-          ${{ github.event.release.html_url }}
     env:
       CONSUMER_API_KEY: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
       CONSUMER_API_SECRET_KEY: ${{ secrets.TWITTER_CONSUMER_API_SECRET_KEY }}
