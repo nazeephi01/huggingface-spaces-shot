@@ -8,7 +8,7 @@ permissions:
   contents: write
 
 jobs:
-  shot-scraper:
+  tweet:
     runs-on: ubuntu-latest
     if: ${{ github.repository != 'simonw/shot-scraper-template' }}
     steps:
