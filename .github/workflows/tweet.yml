@@ -1,0 +1,41 @@
+name: 'Tweet Screenshot Bot'
+on: [push]
+
+jobs:
+  tweet:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Tweet
+      id : tweet
+      uses: snow-actions/tweet@v1.4.0
+      with:
+        status: |
+          Released ${{ github.event.release.name }}
+          ${{ github.event.release.html_url }}
+    env:
+      CONSUMER_API_KEY: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
+      CONSUMER_API_SECRET_KEY: ${{ secrets.TWITTER_CONSUMER_API_SECRET_KEY }}
+      ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+      ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+
+env:
+  CONSUMER_API_KEY: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
+  CONSUMER_API_SECRET_KEY: ${{ secrets.TWITTER_CONSUMER_API_SECRET_KEY }}
+  ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+  ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+steps:
+  - uses: actions/checkout@v3
+  - name: Tweet summary
+    id: summary
+    uses: snow-actions/tweet@v1.4.0
+    with:
+      status: |
+        Thanks for tagging @nazeephie, please take your shot https://huggingface.co/spaces
+      media_paths: |
+        shot.png
+  - name: Tweet details
+    uses: snow-actions/tweet@v1.4.0
+    with:
+      status: |
+        Additional information
+      in_reply_to_status_id: ${{ fromJSON(steps.summary.outputs.response).id_str }}
