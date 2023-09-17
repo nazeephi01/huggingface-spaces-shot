@@ -2,7 +2,7 @@ name: 'Tweet Screenshot Bot'
 on: [push]
 
 jobs:
-  tweet:
+  tweets:
     runs-on: ubuntu-latest
     steps:
       - name: Tweet
