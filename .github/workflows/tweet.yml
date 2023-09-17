@@ -20,4 +20,4 @@ jobs:
       media_paths: |
         shot.png
         
-        - run: echo ${{ steps.tweet.outputs.response }}
+        - run: echo ${{ tweet.outputs.response }}
