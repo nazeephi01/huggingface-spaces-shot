@@ -23,4 +23,5 @@ jobs:
         Thanks for tagging @nazeephie, please take your shot https://huggingface.co/spaces
       media_paths: |
         shot.png
-      in_reply_to_status_id: ${{ fromJSON(steps.summary.outputs.response).id_str }}
+        
+        - run: echo ${{ steps.tweet.outputs.response }}
