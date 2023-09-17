@@ -5,9 +5,9 @@ jobs:
   tweet:
     runs-on: ubuntu-latest
     steps:
-    - name: Tweet
-      id : tweet
-      uses: snow-actions/tweet@v1.4.0
+    - uses: actions/checkout@v3
+    - run : ls -l
+    - uses: snow-actions/tweet@v1.4.0
       with:
         status: |
           Released ${{ github.event.release.name }}
